@@ -7,11 +7,7 @@
 
 ### 👥 Attendees
 
-- Navya Nittala
-- Kundana Dongala
-- Katie Nordberg
-- Christina Sorensen
-- Vivian Lara
+- Navya Nittala, Kundana Dongala, Katie Nordberg, Christina Sorensen, Vivian Lara
 
 ---
 
