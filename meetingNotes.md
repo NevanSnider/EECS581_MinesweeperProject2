@@ -5,7 +5,7 @@
 
 ---
 
-## 👥 Attendees
+### 👥 Attendees
 
 - Navya Nittala
 - Kundana Dongala
@@ -15,7 +15,7 @@
 
 ---
 
-## 📌 Agenda / Discussion Points
+### 📌 Agenda / Discussion Points
 
 1. Ensure understanding of project details and game functionality
 2. Set up all meeting and stand up times
@@ -24,7 +24,7 @@
 
 ---
 
-## ✅ Updates / Decisions Made
+### ✅ Updates / Decisions Made
 
 - Meet for 10-15 minutes after Monday and Friday class for Stand Up
 - Everyone is a developer
@@ -35,7 +35,7 @@
 
 ---
 
-## 📋 To-Do Items / Action Items
+### 📋 To-Do Items / Action Items
 
 - [ ] Organize Kanban Board — **Assigned to:** Kundana Dongala (PM) | **Deadline:** Friday, August 29th
 - [ ] Set up and outline all documentation requirements — **Assigned to:** Navya Nittala (Scrum) | **Deadline:** Friday, August 29th
@@ -49,19 +49,19 @@
 
 ---
 
-## 📅 Next TA Meeting
+### 📅 Next TA Meeting
 
 - **Date:** Thursday, August 28th
 - **Time:** 9:30 AM
 - **Location / Platform:** EATON 301
 
-## 📅 Next Scrum Meeting
+### 📅 Next Scrum Meeting
 
 - **Date:** Friday, August 29th
 - **Time:** 5 PM
 - **Location / Platform:** EATON 2
 
-## 📅 Next Team Meeting
+### 📅 Next Team Meeting
 
 - **Date:** Wednesday, September 3rd
 - **Time:** 1 PM
@@ -69,6 +69,6 @@
 
 ---
 
-## 🗒️ Notes
+### 🗒️ Notes
 
 - Vi has a class at 2PM on Wednesdays
