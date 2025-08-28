@@ -99,7 +99,7 @@ Excluding EECS 581 lecture time.
 
 | Date       | Task(s) Worked On            | Hours | Notes (Optional)    |
 | ---------- | ---------------------------- | ----- | ------------------- |
-| YYYY-MM-DD | Documentation (README draft) | 1.5   | GitHub formatting   |
+| 2025-08-27 | Designing and implementing a data structure for the game board | 1.15  | Development   |
 | YYYY-MM-DD | Debugged recursive uncover   | 2.5   | Fixed infinite loop |
 | YYYY-MM-DD | Weekly sync meeting          | 1.0   | Project check-in    |
 
