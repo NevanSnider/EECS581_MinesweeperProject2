@@ -8,21 +8,14 @@
 
 - Navya Nittala, Kundana Dongala, Katie Nordberg, Christina Sorensen, Vivian Lara, Kevin Likcani(TA)
 
----
 ### 📒 Project Notes
-
----
 
 #### 📅 Deadlines
 - Code freeze is **not strict**, but **any changes made after Fri, Sept. 19th will not be considered**.
 
----
-
 #### 🗂️ Key Data Structures
 - Outlined in the project website.  
 - Ensure all core structures are clearly documented in the code and final submission.
-
----
 
 #### 📊 General Meetings Outline
 - Each person should:
@@ -34,16 +27,12 @@
   - What will you work on next?  
   - Any blockers?  
 
----
-
 #### ⏱️ Person-Hours Estimate
 - Use a **user story point system**.  
 - List out **all action items** and **prioritize** them.  
 - **Check off items** as they are completed.  
 - Update the log **each week**.  
 - Current setup is **good** — keep consistent updates.
-
----
 
 #### 📑 Program Architecture Documentation
 - TA will grade using **Professor’s rubric**.  
@@ -55,15 +44,11 @@
   - Be at least **3–4 pages minimum**.  
   - **Describe the diagrams in depth** and explain how the architecture supports the system.
 
----
-
 #### 📝 Code Documentation
 - Add a **prologue at the beginning** of each file.  
 - Include **comments on every major code block** so the flow is easy to follow.  
 - Comment as if you are **teaching someone new** to the project.  
 - The more clarity, the better — but avoid over-commenting.
-
----
 
 #### 🤖 Use of AI & External Sources
 - You **may use AI or external references** (w3schools, StackOverflow, etc.), but:  
@@ -72,24 +57,18 @@
   - If AI is used, **include the prompt** and explain its purpose.  
 - Try to **minimize AI usage**, but follow the above guidelines if necessary.
 
----
-
 #### 👥 Peer Evaluations
 - Must be completed **on time**.  
 - Submitted at the **end of the project**. 
 
-
 ---
 ## **Meeting Title:** First Team Meeting
 ### **Date:** Wednesday, August 27th, 2025
-
 ---
 
 ### 👥 Attendees
 
 - Navya Nittala, Kundana Dongala, Katie Nordberg, Christina Sorensen, Vivian Lara
-
----
 
 ### 📌 Agenda / Discussion Points
 
@@ -98,8 +77,6 @@
 3. Assign roles (Project Manager, Scrum Master, Developer)
 4. Decide how to assign Person-Hours for each task 
 5. Get started!
-
----
 
 ### ✅ Updates / Decisions Made
 
@@ -113,8 +90,6 @@
   - Project Manager: Kundana Dongala
   - Scrum Master: Navya Nittala
   - Developers: Christina Sorensen, Vi Lara, and Katie Nordberg
-
----
 
 ### 📋 To-Do Items / Action Items
 
@@ -130,8 +105,6 @@
 - [ ] Outline functions (high level overview) — **Assigned to:** Christina Sorensen (Dev) | **Deadline:** Friday, August 29th
   - ESTIMATED MAN HOURS: 2
   - ACTUAL:
-
----
 
 ### 📅 Next TA Meeting
 
@@ -150,8 +123,6 @@
 - **Date:** Wednesday, September 3rd
 - **Time:** 1 PM
 - **Location / Platform:** Teams
-
----
 
 ### 🗒️ Notes
 
