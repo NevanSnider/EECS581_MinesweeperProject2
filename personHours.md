@@ -58,7 +58,7 @@ By using **Expert Judgment**, we leverage past experience with similar class pro
 A **day-by-day accounting per member**, including hours spent on coding, testing, meetings, and documentation.  
 Excluding EECS 581 lecture time.
 
-### 👤 Team Member: [Navya]
+### 👤 Team Member: Navya
 
 | Date       | Task(s) Worked On               | Hours | Notes (Optional)  |
 | ---------- | ------------------------------- | ----- | ----------------- |
@@ -71,7 +71,7 @@ Excluding EECS 581 lecture time.
 
 ---
 
-### 👤 Team Member: [Kundana]
+### 👤 Team Member: Kundana
 
 | Date       | Task(s) Worked On            | Hours | Notes (Optional)    |
 | ---------- | ---------------------------- | ----- | ------------------- |
@@ -83,7 +83,7 @@ Excluding EECS 581 lecture time.
 
 ---
 
-### 👤 Team Member: [Vi]
+### 👤 Team Member: Vi
 
 | Date       | Task(s) Worked On            | Hours | Notes (Optional)    |
 | ---------- | ---------------------------- | ----- | ------------------- |
@@ -95,7 +95,7 @@ Excluding EECS 581 lecture time.
 
 ---
 
-### 👤 Team Member: [Katie]
+### 👤 Team Member: Katie
 
 | Date       | Task(s) Worked On            | Hours | Notes (Optional)    |
 | ---------- | ---------------------------- | ----- | ------------------- |
@@ -107,7 +107,7 @@ Excluding EECS 581 lecture time.
 
 ---
 
-### 👤 Team Member: [Christina]
+### 👤 Team Member: Christina
 
 | Date       | Task(s) Worked On            | Hours | Notes (Optional)    |
 | ---------- | ---------------------------- | ----- | ------------------- |
