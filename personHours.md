@@ -53,7 +53,7 @@ By using **Expert Judgment**, we leverage past experience with similar class pro
 
 ---
 
-# 3. Actual Accounting
+# 2. Actual Accounting
 
 A **day-by-day accounting per member**, including hours spent on coding, testing, meetings, and documentation.  
 Excluding EECS 581 lecture time.
