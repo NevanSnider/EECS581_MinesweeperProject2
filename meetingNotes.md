@@ -25,8 +25,8 @@
 
 - Meet for 10-15 minutes after Monday and Friday class for Stand Up
 - Everyone is a developer
-- Using Expert Judgment for Person-Hours judgement 
-  – The simplest and common method
+- Using Expert Judgment for Person-Hours judgement
+  - The simplest and common method
   – An expert—someone with significant experience on similar projects—provides an estimate based on their knowledge
 - Set up daily scrum via messages 
 - Formal ROLES:
