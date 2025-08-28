@@ -16,7 +16,8 @@
 1. Ensure understanding of project details and game functionality
 2. Set up all meeting and stand up times
 3. Assign roles (Project Manager, Scrum Master, Developer)
-4. Get started!
+4. Decide how to assign Person-Hours for each task 
+5. Get started!
 
 ---
 
@@ -24,6 +25,10 @@
 
 - Meet for 10-15 minutes after Monday and Friday class for Stand Up
 - Everyone is a developer
+- Using Expert Judgment for Person-Hours judgement 
+  – The simplest and common method
+  – An expert—someone with significant experience on similar projects—provides an estimate based on their knowledge
+- Set up daily scrum via messages 
 - Formal ROLES:
   - Project Manager: Kundana Dongala
   - Scrum Master: Navya Nittala
