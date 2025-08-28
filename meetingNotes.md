@@ -1,7 +1,7 @@
 # 📝 Meeting Notes
 
-**Date:** Thursday, August 28th, 2025
-**Meeting Title:** First TA Meeting
+## **Date:** Thursday, August 28th, 2025
+## **Meeting Title:** First TA Meeting
 
 ---
 
@@ -81,8 +81,8 @@
 
 
 ---
-**Date:** Wednesday, August 27th, 2025
-**Meeting Title:** First Team Meeting
+## **Date:** Wednesday, August 27th, 2025
+## **Meeting Title:** First Team Meeting
 
 ---
 
