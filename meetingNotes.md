@@ -93,13 +93,13 @@
 
 #### 📋 To-Do Items / Action Items
 
-- [ ] Organize Kanban Board — **Assigned to:** Kundana Dongala (PM) | **Deadline:** Friday, August 29th
-- [ ] Set up and outline all documentation requirements — **Assigned to:** Navya Nittala (Scrum) | **Deadline:** Friday, August 29th
+- [X] Organize Kanban Board — **Assigned to:** Kundana Dongala (PM) | **Deadline:** Friday, August 29th
+- [X] Set up and outline all documentation requirements — **Assigned to:** Navya Nittala (Scrum) | **Deadline:** Friday, August 29th
 - [ ] Explore Tkinter — **Assigned to:** Everyone | **Deadline:** Friday, August 29th
 - [X] Set up 10x10 grid — **Assigned to:** Katie Nordberg (Dev) | **Deadline:** Friday, August 29th
   - ESTIMATED MAN HOURS: 3
   - ACTUAL: 1.5 
-- [ ] Create a mockup of the grid design and game flow — **Assigned to:** Vi Lara (Dev) | **Deadline:** Friday, August 29th
+- [X] Create a mockup of the grid design and game flow — **Assigned to:** Vi Lara (Dev) | **Deadline:** Friday, August 29th
   - ESTIMATED MAN HOURS: 4
   - ACTUAL:
 - [ ] Outline functions (high level overview) — **Assigned to:** Christina Sorensen (Dev) | **Deadline:** Friday, August 29th
