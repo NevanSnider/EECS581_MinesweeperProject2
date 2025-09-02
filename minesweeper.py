@@ -1,3 +1,5 @@
+import random
+
 # Author: Katie Nordberg
 # Description: This python scripts includes all te logic to play a game of minesweeper.
 # Creation Date: 8/27/2025
@@ -73,12 +75,12 @@ class BoardManager:
     # Private Methods
 
     # Method Name: _initializeBoard
-    # Description: This method initializes the game board to be a 2D array of -1s
+    # Description: This method initializes the game board to be a 2D array of 0s
     # Once the first cell is uncovered, the mines will be placed and the board will be fully defined
     # Input: None (the BoardManager.rows and BoardManager.cols attributes are used)
     # Output: None (BoardManager.board is initialized)
     def _initializeBoard(self):
-        self.boardContent = [[-1 for _ in range(self.cols)] for _ in range(self.rows)]
+        self.boardContent = [[0 for _ in range(self.cols)] for _ in range(self.rows)]
 
         # To start the game, all cells are covered and none are flagged
         self.boardState = [[0 for _ in range(self.cols)] for _ in range(self.rows)]
@@ -196,15 +198,28 @@ class BoardManager:
     #   col (int) - the column of the cell to uncover
     # Output: The BoardManager.boardState attribute is updated
     def uncoverCell(self, row, col):
+        #Not super efficient since it runs everytime this function is called, but it works
+        #Check if this is the first turn (aka no mines placed yet, so board content is all 0s)
+        isFirstTurn = all(
+            self.boardContent[r][c] == 0
+            for r in range(self.rows)
+            for c in range(self.cols)
+        )
         # If the cell is covered, uncover it)
         if self.isCovered(row, col):
             self.boardState[row][col] = 2
+            #If it was the first game, now we can place the mines
+            if isFirstTurn == True:
+                #Function that will randomly add the num of self.mines as "-1"s to the board, making sure it won't randomly assign to the same spot
+                self.placeMines(row, col)
+                #Unset the flag
+                isFirstTurn = False
             
         # If the cell is already uncovered or if it is flagged, do nothing
         else:
             print("Cell is already uncovered or flagged. Cannot uncover this cell.")
 
-    # At the beginning of the game, all cells are initialized to -1.
+    # At the beginning of the game, all cells are initialized to 0.
     # The placement of the mines is not assigned until after the first cell is uncovered.
     # This ensures that the first cell uncovered is never a mine.
 
@@ -248,6 +263,26 @@ class BoardManager:
             print("Expanding to", row, col - 1)
             self.expandOpenCells(row, col - 1)
 
+    #Method Name: placeMines
+    #Description: Function that will randomly add the num of self.mines as "-1"s to the board, making sure it won't randomly assign to the same spot
+    #Input: the row and column of the first cell chosen, since we want to guarantee there wasn't a mine there
+    #Outputs: self.boardContent is updated with mines
+    def placeMines(self, firstRow, firstCol):
+        #Create a list of all possible positions, minus the first clicked cell
+        possiblePositions = [
+            (r, c)
+            for r in range(self.rows)
+            for c in range(self.cols)
+            if not (r == firstRow and c == firstCol)
+        ]
+
+        #Use random.sample to randomly choose from the possible positions
+        minePositions = random.sample(possiblePositions, self.mines)
+
+        #Place the mines by setting the cells to -1
+        for (r, c) in minePositions:
+            self.boardContent[r][c] = -1
+
 # Function Name: validatedIntInputInRange
 # Description: This helper function ensures that the inputted text is an integer within the valid range.
 # It will continue prompting the user for correct input until it is satisfied. 
@@ -268,16 +303,19 @@ def validatedIntInputInRange(min_val, max_val, message):
         except ValueError:
             print(f"Invalid input. Please enter an integer between {min_val} and {max_val}.")
 
+
+
+
 if __name__ == "__main__":
     print("Welcome to Minesweeper!")
     numMines = validatedIntInputInRange(10, 20, "Enter the number of mines")
-    # game = BoardManager(10, 10, numMines)
-    # game.showBoardState()
+    game = BoardManager(10, 10, numMines)
+    game.showBoardState()
 
     # This is an example of a hardcoded boardContent for testing purposes.
-    sample = BoardManager(10, 10, 10)
-    sample.boardContent = sampleBoard10Mines # This is just for testing purposes. The mines would normally be placed after the first cell is uncovered.
-    sample.showBoardState()
+    # sample = BoardManager(10, 10, 10)
+    # sample.boardContent = sampleBoard10Mines # This is just for testing purposes. The mines would normally be placed after the first cell is uncovered.
+    # sample.showBoardState()
     playing = True
 
     # Game loop
@@ -286,22 +324,37 @@ if __name__ == "__main__":
         action = input("Enter 'f' to flag/unflag a cell, 'u' to uncover a cell, or 'q' to quit: ")
         # Flag/unflag a cell and show the updated board state
         if action == 'f':
-            row = validatedIntInputInRange(0, sample.rows - 1, "Row")
-            col = validatedIntInputInRange(0, sample.cols - 1, "Column")
-            sample.flagCell(row, col)
-            sample.showBoardState()
+            row = validatedIntInputInRange(0, game.rows - 1, "Row")
+            col = validatedIntInputInRange(0, game.cols - 1, "Column")
+            game.flagCell(row, col)
+            game.showBoardState()            
+            # row = validatedIntInputInRange(0, sample.rows - 1, "Row")
+            # col = validatedIntInputInRange(0, sample.cols - 1, "Column")
+            # sample.flagCell(row, col)
+            # sample.showBoardState()
         # Uncover a cell and show the updated board state
         elif action == 'u':
-            row = validatedIntInputInRange(0, sample.rows - 1, "Row")
-            col = validatedIntInputInRange(0, sample.cols - 1, "Column")
-            sample.uncoverCell(row, col)
-            sample.expandOpenCells(row, col)
-            sample.showBoardState()
+            row = validatedIntInputInRange(0, game.rows - 1, "Row")
+            col = validatedIntInputInRange(0, game.cols - 1, "Column")
+            game.uncoverCell(row, col)
+            game.expandOpenCells(row, col)
+            game.showBoardState()
 
             # If the uncovered cell is a mine, end the game
-            if not sample.isFlagged(row, col) and sample.isMine(row, col):
+            if not game.isFlagged(row, col) and game.isMine(row, col):
                 print("BOOM! Game Over.")
                 playing = False # End the game loop
+
+            # row = validatedIntInputInRange(0, sample.rows - 1, "Row")
+            # col = validatedIntInputInRange(0, sample.cols - 1, "Column")
+            # sample.uncoverCell(row, col)
+            # sample.expandOpenCells(row, col)
+            # sample.showBoardState()
+
+            # # If the uncovered cell is a mine, end the game
+            # if not sample.isFlagged(row, col) and sample.isMine(row, col):
+            #     print("BOOM! Game Over.")
+            #     playing = False # End the game loop
         # Quit game
         elif action == 'q':
             print("Thanks for playing!")
