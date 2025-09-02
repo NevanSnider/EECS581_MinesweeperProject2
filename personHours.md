@@ -88,8 +88,9 @@ Excluding EECS 581 lecture time.
 | Date       | Task(s) Worked On            | Hours | Notes (Optional)    |
 | ---------- | ---------------------------- | ----- | ------------------- |
 | 2025-08-27 | Figma UI Mockup              | 2.25   | Designing           |
+| 2025-09-02 | Generate Mine Position       | 1.5    | Developmnet         |
 
-**Total Hours (Member):** 2.25 hrs
+**Total Hours (Member):** 3.75 hrs
 
 ---
 
