@@ -210,6 +210,44 @@ class BoardManager:
 
     # The board will be fully defined as soon as the game starts (as soon as the first cell is uncovered).
 
+    # Method Name: expandOpenCells
+    # Description: This method will be used to recursively uncover all adjacent cells that are not mines when a cell with 0 adjacent mines is uncovered.
+    # Input: 
+    #   row (int) - the row of the cell to expand
+    #   col (int) - the column of the cell to expand
+    # Output: The BoardManager.boardState attribute is updated
+    def expandOpenCells(self, row, col):
+        if row <= 0 or row >= self.rows or col <= 0 or col >= self.cols:
+            return
+        if not self.isCovered(row, col) or self.isFlagged(row, col):
+            print("Hello")
+            return
+        self.uncoverCell(row, col)
+        if row + 1 >= 0 and col + 1 >= 0:
+            print("Expanding to", row + 1, col + 1)
+            self.expandOpenCells(row + 1, col + 1)
+        if row + 1 >= 0 and col - 1 >= 0:
+            print("Expanding to", row + 1, col - 1)
+            self.expandOpenCells(row + 1, col - 1)
+        if row - 1 >= 0 and col + 1 >= 0:
+            print("Expanding to", row - 1, col + 1)
+            self.expandOpenCells(row - 1, col + 1)
+        if row - 1 >= 0 and col - 1 >= 0:
+            print("Expanding to", row - 1, col - 1)
+            self.expandOpenCells(row - 1, col - 1)
+        if row + 1 >= 0 and col >= 0:
+            print("Expanding to", row + 1, col)
+            self.expandOpenCells(row + 1, col)
+        if row - 1 >= 0 and col >= 0:
+            print("Expanding to", row - 1, col)
+            self.expandOpenCells(row - 1, col)
+        if row >= 0 and col + 1 >= 0:
+            print("Expanding to", row, col + 1)
+            self.expandOpenCells(row, col + 1)
+        if row >= 0 and col - 1 >= 0:
+            print("Expanding to", row, col - 1)
+            self.expandOpenCells(row, col - 1)
+
 # Function Name: validatedIntInputInRange
 # Description: This helper function ensures that the inputted text is an integer within the valid range.
 # It will continue prompting the user for correct input until it is satisfied. 
@@ -257,6 +295,7 @@ if __name__ == "__main__":
             row = validatedIntInputInRange(0, sample.rows - 1, "Row")
             col = validatedIntInputInRange(0, sample.cols - 1, "Column")
             sample.uncoverCell(row, col)
+            sample.expandOpenCells(row, col)
             sample.showBoardState()
 
             # If the uncovered cell is a mine, end the game
