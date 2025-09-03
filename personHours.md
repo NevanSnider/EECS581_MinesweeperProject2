@@ -110,11 +110,9 @@ Excluding EECS 581 lecture time.
 
 | Date       | Task(s) Worked On            | Hours | Notes (Optional)    |
 | ---------- | ---------------------------- | ----- | ------------------- |
-| YYYY-MM-DD | Documentation (README draft) | 1.5   | GitHub formatting   |
-| YYYY-MM-DD | Debugged recursive uncover   | 2.5   | Fixed infinite loop |
-| YYYY-MM-DD | Weekly sync meeting          | 1.0   | Project check-in    |
+| 2025-09-01 | Debugging recursive uncover   | 1.0   | Working on fixing infinite loop |
 
-**Total Hours (Member):** \_\_\_ hrs
+**Total Hours (Member):** 1.0 hrs
 
 ---
 
