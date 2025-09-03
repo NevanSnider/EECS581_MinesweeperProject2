@@ -1,5 +1,64 @@
 # 📝 Meeting Notes
 
+## **Meeting Title:** Team Meeting
+### **Date:** Wednesday, September 3rd, 2025
+---
+
+#### 👥 Attendees
+
+- Navya Nittala, Kundana Dongala, Katie Nordberg, Christina Sorensen, Vivian Lara
+
+#### 📌 Agenda / Discussion Points
+
+1. Documentation overview
+2. Update person hours and task board
+3. Project status update scrum
+
+
+#### ✅ Updates / Decisions Made
+
+- Katie (dev): Completed advanced datastructure accoriding to game instructions. Implemented game logic and mine detection logic to flag or uncover. If a mine is uncovered then the game ends, if it is flagged and you try to uncover it blocks you.
+- Christina (dev): Working on expandOpenCells function which recusively uncovers the open cells around the one uncovered. This has been pushed to github. Ran into some issues when testing, kept running into the base case (not covered and flagged) however no errors were raised. working on finding a workaround, may need to change isCovered or isFlagged. 
+- Vi (dev): finished random mine placement function. changed board manager class so the boardcontent gets initalized with 0s instead of -1s.
+So check if its the first turn (by seeing if its all 0s), let the user click the first cell, and then place the mines randomly (the -1s). If there was a specific reason why we had it initalize to all -1s (although the board doesn't have the mine calculation nums yet) but it does terminate the game when a mine is hit.
+- Kundana (PM): created a overall system architecture document.
+- Navya (scrum): outlined all documentation, will help PM with system architecture document
+- Decision: try and implement game logic by next Thursday Meeting
+- Decision: Create new branch so when we merge there are no conflicts
+
+#### 📋 To-Do Items / Action Items
+
+- [ ] fix expandOpenCells function — **Assigned to:** Christina and Katie (devs) | **Deadline:** Friday, September 5th
+  - ESTIMATED PERSON HOURS: 2
+  - ACTUAL: 
+- [ ] mine calculation — **Assigned to:** Vi (dev) | **Deadline:** Friday, September 5th
+  - ESTIMATED PERSON HOURS: 1
+  - ACTUAL: 
+- [ ] Implement baseline Tkinter — **Assigned to:** Navya (scrum) | **Deadline:** Friday, September 5th
+  - ESTIMATED PERSON HOURS: 2
+  - ACTUAL: 
+- [X] Look at system architecture documentation and comment any additions/changes — **Assigned to:** Everyone | **Deadline:** Friday, September 5th
+
+#### 📅 Next TA Meeting
+
+- **Date:** Thursday, September 4th
+- **Time:** 9:30 AM
+- **Location / Platform:** EATON 3001
+
+#### 📅 Next Scrum Meeting
+
+- **Date:** Friday, September 5th
+- **Time:** 5 PM
+- **Location / Platform:** EATON 2
+
+#### 📅 Next Team Meeting
+
+- **Date:** Wednesday, September 10th
+- **Time:** 1 PM
+- **Location / Platform:** Teams
+
+---
+
 ## **Meeting Title:** First TA Meeting
 ### **Date:** Thursday, August 28th, 2025
 ---
