@@ -101,6 +101,7 @@ Excluding EECS 581 lecture time.
 | 2025-08-27 | Designing and implementing a data structure for the game board | 1.15  | Development |
 | 2025-08-28 | Created BoardManager class and implemented multiple base attributes and methods. | 1.75 | Development |
 | 2025-08-28 | Tested BoardManager class and game loop. | 0.25   | Testing |
+| 2025-09-03 | expandOpenCells function | 0.5 | Fixed bug |
 
 **Total Hours (Member):** 3.15 hrs
 
