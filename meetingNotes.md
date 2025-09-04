@@ -1,5 +1,24 @@
 # 📝 Meeting Notes
 
+## **Meeting Title:** TA Meeting
+### **Date:** Thursday, September 4th, 2025
+---
+
+#### 👥 Attendees
+
+- Navya Nittala, Kundana Dongala, Katie Nordberg, Christina Sorensen, Vivian Lara, Kevin Likcani(TA)
+
+### 📒 Notes
+- Adding more features to the game can help overall grade
+- Adding more information to the documentation can compensate for not great diagrams
+- Diagrams
+  - try to have 3-4 diagrams
+    - components interaction dataflow
+    - entire process (from start to finish) 
+      - circles to arrow pointing to each other (348)
+    - different states of the game
+    
+---
 ## **Meeting Title:** Team Meeting
 ### **Date:** Wednesday, September 3rd, 2025
 ---
