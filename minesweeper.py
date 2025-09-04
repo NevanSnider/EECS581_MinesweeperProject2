@@ -231,10 +231,10 @@ class BoardManager:
     #   row (int) - the row of the cell to expand
     #   col (int) - the column of the cell to expand
     # Output: The BoardManager.boardState attribute is updated
-    def expandOpenCells(self, row, col):
-        if row <= 0 or row >= self.rows or col <= 0 or col >= self.cols:
+    def expandOpenCells(self, row, col, selectedCell=False):
+        if row < 0 or row >= self.rows or col < 0 or col >= self.cols:
             return
-        if not self.isCovered(row, col) or self.isFlagged(row, col):
+        if ((not self.isCovered(row, col)) or (self.isFlagged(row, col))) and (not selectedCell):
             print("Hello")
             return
         self.uncoverCell(row, col)
@@ -337,7 +337,7 @@ if __name__ == "__main__":
             row = validatedIntInputInRange(0, game.rows - 1, "Row")
             col = validatedIntInputInRange(0, game.cols - 1, "Column")
             game.uncoverCell(row, col)
-            game.expandOpenCells(row, col)
+            game.expandOpenCells(row, col, True)
             game.showBoardState()
 
             # If the uncovered cell is a mine, end the game
