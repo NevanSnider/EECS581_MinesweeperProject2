@@ -211,6 +211,7 @@ class BoardManager:
             #If it was the first game, now we can place the mines
             if isFirstTurn == True:
                 #Function that will randomly add the num of self.mines as "-1"s to the board, making sure it won't randomly assign to the same spot
+                #will also update the cells with the num of mines nearby
                 self.placeMines(row, col)
                 #Unset the flag
                 isFirstTurn = False
@@ -264,24 +265,47 @@ class BoardManager:
             self.expandOpenCells(row, col - 1)
 
     #Method Name: placeMines
-    #Description: Function that will randomly add the num of self.mines as "-1"s to the board, making sure it won't randomly assign to the same spot
+    #Description: Function that will randomly add the num of self.mines as "-1"s to the board, making sure it won't randomly assign to the same spot. Will also update cells
+    # with the correct number of neighboring mines
     #Input: the row and column of the first cell chosen, since we want to guarantee there wasn't a mine there
-    #Outputs: self.boardContent is updated with mines
+    #Outputs: self.boardContent is updated with mines and numbers to indicate nearby mines
     def placeMines(self, firstRow, firstCol):
         #Create a list of all possible positions, minus the first clicked cell
         possiblePositions = [
-            (r, c)
-            for r in range(self.rows)
-            for c in range(self.cols)
-            if not (r == firstRow and c == firstCol)
+            (row, col)
+            for row in range(self.rows)
+            for col in range(self.cols)
+            if not (row == firstRow and col == firstCol)
         ]
 
         #Use random.sample to randomly choose from the possible positions
         minePositions = random.sample(possiblePositions, self.mines)
 
         #Place the mines by setting the cells to -1
-        for (r, c) in minePositions:
-            self.boardContent[r][c] = -1
+        for (row, col) in minePositions:
+            self.boardContent[row][col] = -1
+
+        #Defining what a neighboring cell would be (anything within 1 cell)
+        #so the neighbors of 5,5 would be 4, 4 , 4, 5 , 4,6 , etc.
+        neighbors = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
+        #Update all the cells with the correct number of neighboring mines
+        for row in range(self.rows):
+            for col in range(self.cols):
+                #if the cell is not a mine
+                if self.boardContent[row][col] != -1:
+                    neighboringMineCount = 0
+                    #calculate what the neighbors' row/col is
+                    for rowDiff, colDiff in neighbors:
+                        neighborRow = row + rowDiff
+                        neighborCol = col + colDiff
+                        #Check that the neighbor is within the board (ie, no negative rows/cols or rows/cols beyond 10)
+                        if 0 <= neighborRow < self.rows and 0 <= neighborCol < self.cols:
+                            #if the neighbor is a mine, update the mine count
+                            if self.boardContent[neighborRow][neighborCol] == -1:
+                                neighboringMineCount += 1
+                    #update the cell with the neighboring mine count
+                    self.boardContent[row][col] = neighboringMineCount
+
 
 # Function Name: validatedIntInputInRange
 # Description: This helper function ensures that the inputted text is an integer within the valid range.
