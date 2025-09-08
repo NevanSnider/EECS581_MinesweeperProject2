@@ -66,8 +66,9 @@ Excluding EECS 581 lecture time.
 | 2025-08-27 | Outlined all documentation reqs | 1.5   | Administrative    |
 | 2025-08-28 | Outlines all notes templates    | 1.0   | Administrative    |
 | 2025-08-28 | Documentation (README draft)    | 1.5   | GitHub formatting |
+| 2025-09-08 | tkinter game board              | 3     | Development UI    |
 
-**Total Hours (Member):** 5 hrs
+**Total Hours (Member):** 8 hrs
 
 ---
 
@@ -85,10 +86,10 @@ Excluding EECS 581 lecture time.
 
 ### 👤 Team Member: Vi
 
-| Date       | Task(s) Worked On            | Hours | Notes (Optional)    |
-| ---------- | ---------------------------- | ----- | ------------------- |
-| 2025-08-27 | Figma UI Mockup              | 2.25   | Designing           |
-| 2025-09-02 | Generate Mine Position       | 1.5    | Developmnet         |
+| Date       | Task(s) Worked On      | Hours | Notes (Optional) |
+| ---------- | ---------------------- | ----- | ---------------- |
+| 2025-08-27 | Figma UI Mockup        | 2.25  | Designing        |
+| 2025-09-02 | Generate Mine Position | 1.5   | Developmnet      |
 
 **Total Hours (Member):** 3.75 hrs
 
@@ -96,12 +97,12 @@ Excluding EECS 581 lecture time.
 
 ### 👤 Team Member: Katie
 
-| Date       | Task(s) Worked On            | Hours | Notes (Optional)    |
-| ---------- | ---------------------------- | ----- | ------------------- |
-| 2025-08-27 | Designing and implementing a data structure for the game board | 1.15  | Development |
-| 2025-08-28 | Created BoardManager class and implemented multiple base attributes and methods. | 1.75 | Development |
-| 2025-08-28 | Tested BoardManager class and game loop. | 0.25   | Testing |
-| 2025-09-03 | expandOpenCells function | 0.5 | Fixed bug |
+| Date       | Task(s) Worked On                                                                | Hours | Notes (Optional) |
+| ---------- | -------------------------------------------------------------------------------- | ----- | ---------------- |
+| 2025-08-27 | Designing and implementing a data structure for the game board                   | 1.15  | Development      |
+| 2025-08-28 | Created BoardManager class and implemented multiple base attributes and methods. | 1.75  | Development      |
+| 2025-08-28 | Tested BoardManager class and game loop.                                         | 0.25  | Testing          |
+| 2025-09-03 | expandOpenCells function                                                         | 0.5   | Fixed bug        |
 
 **Total Hours (Member):** 3.15 hrs
 
@@ -109,9 +110,9 @@ Excluding EECS 581 lecture time.
 
 ### 👤 Team Member: Christina
 
-| Date       | Task(s) Worked On            | Hours | Notes (Optional)    |
-| ---------- | ---------------------------- | ----- | ------------------- |
-| 2025-09-01 | Debugging recursive uncover   | 1.0   | Working on fixing infinite loop |
+| Date       | Task(s) Worked On           | Hours | Notes (Optional)                |
+| ---------- | --------------------------- | ----- | ------------------------------- |
+| 2025-09-01 | Debugging recursive uncover | 1.0   | Working on fixing infinite loop |
 
 **Total Hours (Member):** 1.0 hrs
 
