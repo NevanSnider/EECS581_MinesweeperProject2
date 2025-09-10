@@ -103,8 +103,10 @@ Excluding EECS 581 lecture time.
 | 2025-08-28 | Created BoardManager class and implemented multiple base attributes and methods. | 1.75  | Development      |
 | 2025-08-28 | Tested BoardManager class and game loop.                                         | 0.25  | Testing          |
 | 2025-09-03 | expandOpenCells function                                                         | 0.5   | Fixed bug        |
+| 2025-09-10 | Tested mine generation function and tkinter implementation. Found new bug in expandOpenCells |
+ 0.5 | Testing |
 
-**Total Hours (Member):** 3.15 hrs
+**Total Hours (Member):** 4.15 hrs
 
 ---
 
