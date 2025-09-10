@@ -1,5 +1,75 @@
 # 📝 Meeting Notes
 
+## **Meeting Title:** Team Meeting
+### **Date:** Wednesday, September 10th, 2025
+---
+
+#### 👥 Attendees
+
+- Navya Nittala, Kundana Dongala, Katie Nordberg, Christina Sorensen, Vivian Lara
+
+#### 📌 Agenda / Discussion Points
+
+1. Update person hours and task board
+2. Project status update scrum
+3. Outline diagrams
+4. Finalize Tkinter
+5. Discuss bug in expandOpenCells 
+
+#### ✅ Updates / Decisions Made
+
+- Katie (dev): spent about 30 mins testing the code, look good on windows. mine generation is working well with tkinter as well. expandOpenCells is not working with tkinter, bug deals with console version of it. when tested with Christina there were mines placed but there the mine count wasnt added until recently. it works recursively where it should uncover all the cells which have 0, but it is currently opening all the cells that are not a mine. proposed adding a base case to check if the surrounding mines are 0. 
+- Christina (dev): N/A
+- Vi (dev): finished the mine calculations. once expandOpenCells bug is fixed, will integrate with UI
+- Kundana (PM): worked on TA requests for estimated time sheet excel. Documentation will be done tomorrow.
+- Navya (scrum): pushed tkinter UI, will work on diagrams for documentation
+- Decision: Diagrams
+  - Different States of the Game 
+    - Use Vi's UI mockup for this
+  - Components Interaction Dataflow
+    - boardManager class --> keeps track of rows, columns, mines
+    - initializeBoard function --> propogrates and initalizes board content and stare properties as 0, creates an empty board
+    - Refer to comments for the rest
+  - entire process (from start to finish)
+    - combine above 2 to create this one
+
+#### 📋 To-Do Items / Action Items
+
+- [ ] fix expandOpenCells bug to open only cells with 0 — **Assigned to:** Christina (devs) | **Deadline:** Thursday, September 11th
+  - ESTIMATED PERSON HOURS: 1
+  - ACTUAL: 
+- [ ] mine calculation UI update — **Assigned to:** Vi (dev) | **Deadline:** Friday, September 12th
+  - ESTIMATED PERSON HOURS: 1
+  - ACTUAL: 
+- [ ] Write out system architecture based on comments — **Assigned to:** Kundana (PM) | **Deadline:** Friday, September 12th
+  - ESTIMATED PERSON HOURS: 4
+  - ACTUAL: 
+- [ ] Make Logic Diagram — **Assigned to:** Katie (dev) & Navya (scrum) | **Deadline:** Friday, September 12th
+  - ESTIMATED PERSON HOURS: 4
+  - ACTUAL: 
+- [ ] Make Different States of the Game diagram — **Assigned to:** Vi (dev) | **Deadline:** Friday, September 12th
+  - ESTIMATED PERSON HOURS: 1
+  - ACTUAL: 
+
+#### 📅 Next TA Meeting
+
+- **Date:** Thursday, September 11th
+- **Time:** 9:30 AM
+- **Location / Platform:** EATON 3001
+
+#### 📅 Next Scrum Meeting
+
+- **Date:** Friday, September 5th
+- **Time:** 5 PM
+- **Location / Platform:** EATON 2
+
+#### 📅 Next Team Meeting
+
+- **Date:** Wednesday, September 17th
+- **Time:** 9 AM
+- **Location / Platform:** Teams
+---
+
 ## **Meeting Title:** TA Meeting
 ### **Date:** Thursday, September 4th, 2025
 ---
@@ -47,13 +117,13 @@ So check if its the first turn (by seeing if its all 0s), let the user click the
 
 #### 📋 To-Do Items / Action Items
 
-- [ ] fix expandOpenCells function — **Assigned to:** Christina and Katie (devs) | **Deadline:** Friday, September 5th
+- [X] fix expandOpenCells function — **Assigned to:** Christina and Katie (devs) | **Deadline:** Friday, September 5th
   - ESTIMATED PERSON HOURS: 2
   - ACTUAL: 
-- [ ] mine calculation — **Assigned to:** Vi (dev) | **Deadline:** Friday, September 5th
+- [X] mine calculation — **Assigned to:** Vi (dev) | **Deadline:** Friday, September 5th
   - ESTIMATED PERSON HOURS: 1
   - ACTUAL: 
-- [ ] Implement baseline Tkinter — **Assigned to:** Navya (scrum) | **Deadline:** Friday, September 5th
+- [X] Implement baseline Tkinter — **Assigned to:** Navya (scrum) | **Deadline:** Friday, September 5th
   - ESTIMATED PERSON HOURS: 2
   - ACTUAL: 
 - [X] Look at system architecture documentation and comment any additions/changes — **Assigned to:** Everyone | **Deadline:** Friday, September 5th
