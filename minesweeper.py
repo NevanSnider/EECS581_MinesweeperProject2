@@ -233,35 +233,34 @@ class BoardManager:
     #   col (int) - the column of the cell to expand
     # Output: The BoardManager.boardState attribute is updated
     def expandOpenCells(self, row, col, selectedCell=False):
+        #If the cell is out of bounds, or if it's uncovered or flagged, it stops recursing
         if row < 0 or row >= self.rows or col < 0 or col >= self.cols:
             return
         if ((not self.isCovered(row, col)) or (self.isFlagged(row, col))) and (not selectedCell):
-            print("Hello")
             return
-        self.uncoverCell(row, col)
-        if row + 1 >= 0 and col + 1 >= 0:
-            print("Expanding to", row + 1, col + 1)
+        #Uncovers the cell if it's covered
+        if self.isCovered(row, col):
+            self.uncoverCell(row, col)
+        #If the cell isn't a 0 or mine, it stops recursing
+        if self.isMine(row, col) or self.boardContent[row][col] != 0:
+            return
+
+        #Looks at the square around itself
+        if row + 1 < self.rows and col + 1 < self.cols:
             self.expandOpenCells(row + 1, col + 1)
-        if row + 1 >= 0 and col - 1 >= 0:
-            print("Expanding to", row + 1, col - 1)
+        if row + 1 < self.rows and col - 1 >= 0:
             self.expandOpenCells(row + 1, col - 1)
-        if row - 1 >= 0 and col + 1 >= 0:
-            print("Expanding to", row - 1, col + 1)
+        if row - 1 >= 0 and col + 1 < self.cols:
             self.expandOpenCells(row - 1, col + 1)
         if row - 1 >= 0 and col - 1 >= 0:
-            print("Expanding to", row - 1, col - 1)
             self.expandOpenCells(row - 1, col - 1)
-        if row + 1 >= 0 and col >= 0:
-            print("Expanding to", row + 1, col)
+        if row + 1 < self.rows:
             self.expandOpenCells(row + 1, col)
-        if row - 1 >= 0 and col >= 0:
-            print("Expanding to", row - 1, col)
+        if row - 1 >= 0:
             self.expandOpenCells(row - 1, col)
-        if row >= 0 and col + 1 >= 0:
-            print("Expanding to", row, col + 1)
+        if col + 1 < self.cols:
             self.expandOpenCells(row, col + 1)
-        if row >= 0 and col - 1 >= 0:
-            print("Expanding to", row, col - 1)
+        if col - 1 >= 0:
             self.expandOpenCells(row, col - 1)
 
     #Method Name: placeMines
