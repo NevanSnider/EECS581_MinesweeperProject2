@@ -1,5 +1,23 @@
 # 📝 Meeting Notes
 
+## **Meeting Title:** TA Meeting
+### **Date:** Thursday, September 11th, 2025
+---
+
+#### 👥 Attendees
+
+- Navya Nittala, Kundana Dongala, Katie Nordberg, Christina Sorensen, Vivian Lara, Kevin Likcani(TA)
+
+### 📒 Notes
+- Arch. Documentation looks good
+- Excel sheet looks good
+- Project looks good
+- Good standing!! On track to 100%!!
+- Submission is GitHub repo
+
+  
+---
+
 ## **Meeting Title:** Team Meeting
 ### **Date:** Wednesday, September 10th, 2025
 ---
