@@ -89,9 +89,10 @@ Excluding EECS 581 lecture time.
 | Date       | Task(s) Worked On      | Hours | Notes (Optional) |
 | ---------- | ---------------------- | ----- | ---------------- |
 | 2025-08-27 | Figma UI Mockup        | 2.25  | Designing        |
-| 2025-09-02 | Generate Mine Position | 1.5   | Developmnet      |
+| 2025-09-02 | Generate Mine Position | 1.5   | Development      |
+| 2025-09-08 | Added Mine Calculation in Adjacent Cells | 0.5   | Development      |
 
-**Total Hours (Member):** 3.75 hrs
+**Total Hours (Member):** 4.25 hrs
 
 ---
 
@@ -104,8 +105,9 @@ Excluding EECS 581 lecture time.
 | 2025-08-28 | Tested BoardManager class and game loop.                                         | 0.25  | Testing          |
 | 2025-09-03 | expandOpenCells function                                                         | 0.5   | Fixed bug        |
 | 2025-09-10 | Tested mine generation function and tkinter implementation. Found new bug in expandOpenCells | 0.5 | Testing |
+| 2025-09-11 | Worked on BoardManager component diagram | 1.5 | Documentation |
 
-**Total Hours (Member):** 4.15 hrs
+**Total Hours (Member):** 5.75 hrs
 
 ---
 
