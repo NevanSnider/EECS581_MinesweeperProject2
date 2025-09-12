@@ -106,8 +106,9 @@ Excluding EECS 581 lecture time.
 | 2025-09-03 | expandOpenCells function                                                         | 0.5   | Fixed bug        |
 | 2025-09-10 | Tested mine generation function and tkinter implementation. Found new bug in expandOpenCells | 0.5 | Testing |
 | 2025-09-11 | Worked on BoardManager component diagram | 1.5 | Documentation |
+| 2025-09-12 | Finished BoardManager component diagram | 0.5 | Documentation |
 
-**Total Hours (Member):** 5.75 hrs
+**Total Hours (Member):** 6.15 hrs
 
 ---
 
