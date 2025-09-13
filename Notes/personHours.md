@@ -92,8 +92,9 @@ Excluding EECS 581 lecture time.
 | 2025-09-02 | Generate Mine Position | 1.5   | Development      |
 | 2025-09-08 | Added Mine Calculation in Adjacent Cells | 0.5   | Development      |
 | 2025-09-12 | Added Mine Calculation UI Update | 0.25   | Development      |
+| 2025-09-12 | Created Game State Flow Diagram | 1.0   | Documentation      |
 
-**Total Hours (Member):** 4.5 hrs
+**Total Hours (Member):** 5.5 hrs
 
 ---
 
