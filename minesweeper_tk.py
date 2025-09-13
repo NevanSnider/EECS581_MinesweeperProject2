@@ -215,7 +215,7 @@ class MinesweeperApp(tk.Tk):
 
         try:
             if self.game.boardContent[r][c] == 0:
-                self.game.expandOpenCells(r, c)
+                self.game.expandOpenCells(r, c, True)
         except Exception:
             # Guard against incomplete backend flood-fill implementation
             pass
