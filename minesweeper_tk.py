@@ -211,6 +211,7 @@ class MinesweeperApp(tk.Tk):
             self.update_view()
             messagebox.showinfo("BOOM!", "Game Over.")
             self._disable_all()
+            self.reset_game()
             return
 
         try:
@@ -225,6 +226,7 @@ class MinesweeperApp(tk.Tk):
         if self._check_win():
             messagebox.showinfo("🎉 You Win!", "You cleared all safe cells!")
             self._disable_all()
+            self.reset_game()
 
     def on_right_click(self, r, c, event):
         """Handle flag/unflag action, then repaint."""
