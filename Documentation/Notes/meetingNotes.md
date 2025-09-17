@@ -1,5 +1,39 @@
 # 📝 Meeting Notes
 
+## **Meeting Title:** Team Meeting
+### **Date:** Thursday, September 17th, 2025
+---
+
+#### 👥 Attendees
+
+- Navya Nittala, Kundana Dongala, Katie Nordberg, Christina Sorensen, Vivian Lara
+
+#### 📌 Agenda / Discussion Points
+
+1. Review final submission
+2. Discuss testing and any changes
+
+#### ✅ Updates / Decisions Made
+
+- Katie (dev): did some testing. made board class diagram. 
+- Christina (dev): created and pushed documentation for testing. noticed game board stays after you win or lose. will try to implement reset button. 
+- Vi (dev): fixed the expandOpenCells function. created states of the game diagram. 
+- Kundana (PM): Tested program and confirmed all documentation requirements
+- Navya (scrum): organized repo for submission and finalized system srchitecture doc. 
+
+#### 📋 To-Do Items / Action Items
+- [ ] fix game reset — **Assigned to:** Christina (devs) | **Deadline:** Thursday, September 18th
+  - ESTIMATED PERSON HOURS: 0.5
+  - ACTUAL: 
+- [ ] Submit GitHub Repo (Navya submits)
+
+#### 📅 Next TA Meeting
+
+- **Date:** Thursday, September 18th
+- **Time:** 9:30 AM
+- **Location / Platform:** EATON 3001
+  
+---
 ## **Meeting Title:** TA Meeting
 ### **Date:** Thursday, September 11th, 2025
 ---
@@ -14,7 +48,6 @@
 - Project looks good
 - Good standing!! On track to 100%!!
 - Submission is GitHub repo
-
   
 ---
 
@@ -53,21 +86,21 @@
 
 #### 📋 To-Do Items / Action Items
 
-- [ ] fix expandOpenCells bug to open only cells with 0 — **Assigned to:** Christina (devs) | **Deadline:** Thursday, September 11th
+- [X] fix expandOpenCells bug to open only cells with 0 — **Assigned to:** Christina (devs) | **Deadline:** Thursday, September 11th
   - ESTIMATED PERSON HOURS: 1
-  - ACTUAL: 
-- [ ] mine calculation UI update — **Assigned to:** Vi (dev) | **Deadline:** Friday, September 12th
+  - ACTUAL: 1
+- [X] mine calculation UI update — **Assigned to:** Vi (dev) | **Deadline:** Friday, September 12th
   - ESTIMATED PERSON HOURS: 1
-  - ACTUAL: 
-- [ ] Write out system architecture based on comments — **Assigned to:** Kundana (PM) | **Deadline:** Friday, September 12th
+  - ACTUAL: 0.5
+- [ ] Write out system architecture based on comments — **Assigned to:** Kundana (PM) and Navya (scrum)| **Deadline:** Friday, September 12th
   - ESTIMATED PERSON HOURS: 4
-  - ACTUAL: 
+  - ACTUAL: 2
 - [ ] Make Logic Diagram — **Assigned to:** Katie (dev) & Navya (scrum) | **Deadline:** Friday, September 12th
   - ESTIMATED PERSON HOURS: 4
-  - ACTUAL: 
+  - ACTUAL: 2
 - [ ] Make Different States of the Game diagram — **Assigned to:** Vi (dev) | **Deadline:** Friday, September 12th
   - ESTIMATED PERSON HOURS: 1
-  - ACTUAL: 
+  - ACTUAL: 1
 
 #### 📅 Next TA Meeting
 
