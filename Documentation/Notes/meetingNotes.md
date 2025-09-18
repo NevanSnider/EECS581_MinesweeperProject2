@@ -17,7 +17,7 @@
 ---
 
 ## **Meeting Title:** Team Meeting
-### **Date:** Thursday, September 17th, 2025
+### **Date:** Wednesday, September 17th, 2025
 ---
 
 #### 👥 Attendees
