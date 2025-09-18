@@ -11,9 +11,9 @@
 ### 📒 Notes/ToDo
 - Documentation meets all requirements
 - [X] Change window title to "playing" once run is clicked
-- [ ] Add columns and rows with numbers and letters
+- [X] Add columns and rows with numbers and letters
 - Review requirements in canvas and make sure everything is there (good on game setup, but double check)
-- Submit peer evaluations on canvas 
+- [X] Submit peer evaluations on canvas 
 
 ---
 
