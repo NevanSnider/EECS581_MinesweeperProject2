@@ -281,13 +281,10 @@ class MinesweeperApp(tk.Tk):
                     else:
                         # Show adjacent-mine count if > 0; otherwise leave empty
                         n = self.game.boardContent[r][c]
-                        if n > 0:
-                            btn.config(
-                                text=str(n),
-                                disabledforeground=NUMBER_COLORS.get(n, DISABLED_FG),
-                            )
-                        else:
-                            btn.config(text="")
+                        btn.config(
+                            text=str(n),
+                            disabledforeground=NUMBER_COLORS.get(n, DISABLED_FG),
+                        )
 
         # Update mines-remaining label after any state changes
         self.mine_label.config(text=self._mine_label_text(), fg=FG_COLOR, bg=BG_COLOR)
