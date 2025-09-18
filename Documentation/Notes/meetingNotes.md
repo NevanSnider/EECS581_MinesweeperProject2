@@ -10,9 +10,10 @@
 
 ### 📒 Notes/ToDo
 - Documentation meets all requirements
-- [ ] Change window title to "playing" once run is clicked
+- [X] Change window title to "playing" once run is clicked
 - [ ] Add columns and rows with numbers and letters
-- review requirements in canvas and make sure everything is there (good on game setup, but double check)
+- Review requirements in canvas and make sure everything is there (good on game setup, but double check)
+- Submit peer evaluations on canvas 
 
 ---
 
