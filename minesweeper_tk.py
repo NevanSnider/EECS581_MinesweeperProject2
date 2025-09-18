@@ -165,6 +165,7 @@ class MinesweeperApp(tk.Tk):
     def reset_game(self):
         """Reset the game with the SAME rows/cols/mines as current state."""
         self.game = BoardManager(self.game.rows, self.game.cols, self.game.mines)
+        self.title("Minesweeper")
         self._rebuild_grid()
 
     def _rebuild_grid(self):
@@ -198,6 +199,8 @@ class MinesweeperApp(tk.Tk):
         Button-1 = left mouse click
         Button-3 = right mouse click (on Mac, usually two-finger tap)
         """
+        self.title("Playing")
+
         # Ignore uncover attempts on flagged cells
         if self.game.boardState[r][c] == 1:
             return
@@ -208,6 +211,7 @@ class MinesweeperApp(tk.Tk):
         # If it’s a mine and not flagged, game over
         if not self.game.isFlagged(r, c) and self.game.isMine(r, c):
             self._reveal_all_mines()
+            self.title("Game Over")
             self.update_view()
             messagebox.showinfo("BOOM!", "Game Over.")
             self._disable_all()
@@ -224,6 +228,7 @@ class MinesweeperApp(tk.Tk):
         # Refresh the UI and evaluate win condition
         self.update_view()
         if self._check_win():
+            self.title("You Win!")
             messagebox.showinfo("🎉 You Win!", "You cleared all safe cells!")
             self._disable_all()
             self.reset_game()
