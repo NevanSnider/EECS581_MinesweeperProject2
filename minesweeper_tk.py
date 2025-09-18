@@ -141,7 +141,7 @@ class MinesweeperApp(tk.Tk):
             bg=COVERED_BG, fg=FG_COLOR,
             activebackground=COVERED_BG, activeforeground=FG_COLOR,
         )
-        b.grid(row=r, column=c, padx=1, pady=1, sticky="nsew")
+        b.grid(row=r+1, column=c+1, padx=1, pady=1, sticky="nsew")
 
         # Mouse interactions
         b.bind("<Button-1>", partial(self.on_left_click, r, c))   # uncover
