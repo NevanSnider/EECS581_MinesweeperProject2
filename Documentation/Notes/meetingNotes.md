@@ -1,5 +1,21 @@
 # 📝 Meeting Notes
 
+## **Meeting Title:** TA Meeting
+### **Date:** Thursday, September 18th, 2025
+---
+
+#### 👥 Attendees
+
+- Navya Nittala, Kundana Dongala, Katie Nordberg, Christina Sorensen, Vivian Lara, Kevin Likcani(TA)
+
+### 📒 Notes/ToDo
+- Documentation meets all requirements
+- [ ] Change window title to "playing" once run is clicked
+- [ ] Add columns and rows with numbers and letters
+- review requirements in canvas and make sure everything is there (good on game setup, but double check)
+
+---
+
 ## **Meeting Title:** Team Meeting
 ### **Date:** Thursday, September 17th, 2025
 ---
