@@ -34,6 +34,7 @@ DISABLED_FG    = "#3b2e2e"   # dark text on uncovered cells
 
 # Mapping of number -> text color for uncovered numeric cells
 NUMBER_COLORS = {
+    0: "#e0a5b0",
     1: "#1976d2",
     2: "#388e3c",
     3: "#d32f2f",
@@ -285,6 +286,7 @@ class MinesweeperApp(tk.Tk):
                             text=str(n),
                             disabledforeground=NUMBER_COLORS.get(n, DISABLED_FG),
                         )
+
 
         # Update mines-remaining label after any state changes
         self.mine_label.config(text=self._mine_label_text(), fg=FG_COLOR, bg=BG_COLOR)
