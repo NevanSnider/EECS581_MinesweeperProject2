@@ -17,7 +17,7 @@ import tkinter as tk
 from tkinter import messagebox, simpledialog
 from functools import partial
 
-from minesweeper import BoardManager
+from Classes.minesweeper import BoardManager
 
 # Window + general colors
 BG_COLOR       = "#d182a0"   # soft pink (window / background)

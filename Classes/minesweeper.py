@@ -319,6 +319,7 @@ def validatedIntInputInRange(min_val, max_val, message):
 
 if __name__ == "__main__":
     print("Welcome to Minesweeper!")
+    print("To play our more beautiful version, please run minesweeper_tk.py")
     numMines = validatedIntInputInRange(10, 20, "Enter the number of mines")
     game = BoardManager(10, 10, numMines)
     game.showBoardState()
@@ -338,11 +339,7 @@ if __name__ == "__main__":
             row = validatedIntInputInRange(0, game.rows - 1, "Row")
             col = validatedIntInputInRange(0, game.cols - 1, "Column")
             game.flagCell(row, col)
-            game.showBoardState()            
-            # row = validatedIntInputInRange(0, sample.rows - 1, "Row")
-            # col = validatedIntInputInRange(0, sample.cols - 1, "Column")
-            # sample.flagCell(row, col)
-            # sample.showBoardState()
+            game.showBoardState()
         # Uncover a cell and show the updated board state
         elif action == 'u':
             row = validatedIntInputInRange(0, game.rows - 1, "Row")
@@ -356,16 +353,6 @@ if __name__ == "__main__":
                 print("BOOM! Game Over.")
                 playing = False # End the game loop
 
-            # row = validatedIntInputInRange(0, sample.rows - 1, "Row")
-            # col = validatedIntInputInRange(0, sample.cols - 1, "Column")
-            # sample.uncoverCell(row, col)
-            # sample.expandOpenCells(row, col)
-            # sample.showBoardState()
-
-            # # If the uncovered cell is a mine, end the game
-            # if not sample.isFlagged(row, col) and sample.isMine(row, col):
-            #     print("BOOM! Game Over.")
-            #     playing = False # End the game loop
         # Quit game
         elif action == 'q':
             print("Thanks for playing!")
