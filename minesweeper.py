@@ -1,26 +1,14 @@
-import random
-
-# Author: Katie Nordberg
-# Description: This python scripts includes all te logic to play a game of minesweeper.
+# Authors: Katie Nordberg, Christina Sorensen, Navya Nittala, Vi Lara, and Kundana Dongala
+# Program Name: minesweeper.py
+# Description: This python scripts includes all the logic for a minesweeper game board.
+# Inputs: None
+# Outputs: 
+# - A BoardManager class that handles all parameters and functions of the game board
+# - If run as a script, it will run a text-based version of the game in the console
 # Creation Date: 8/27/2025
 
-# For a 3x3 game board, the board variable will be initialized as:
-# [[-1, -1, -1],
-#  [-1, -1, -1],
-#  [-1, -1, -1]]
+import random
 
-# An example of a fully defined 3x3 board where there is only 1 mine and it is in the middle cell would be:
-# board = [[1,  1, 1],
-#          [1, -1, 1],
-#          [1,  1, 1]]
-
-# An example of a fully defined 3x3 board where there are 2 mines (shown by -1s):
-# board = [[-1,  2, 1],
-#          [ 2, -1, 1],
-#          [ 1,  1, 1]]
-# board[0][0] and board[1][1] have mines because they are -1
-
-# mines = [(0,0), (1, 3), (2, 7), (3, 7), (4, 7), (5, 1), (7, 4), (7,5), (8,2), (9,9)]
 # Note: I made this by hand for testing purposes. I believe I got each cell right, but I could have miscalculated somewhere. Let me know if you see any errors! - Katie
 sampleBoard10Mines =   [[-1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
                         [ 1, 1, 1,-1, 1, 0, 1, 1, 1, 0],

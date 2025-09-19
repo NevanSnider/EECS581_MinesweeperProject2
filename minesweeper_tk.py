@@ -1,12 +1,16 @@
 """
-Tkinter UI for a Minesweeper game.
+Authors: Katie Nordberg, Christina Sorensen, Navya Nittala, Vi Lara, and Kundana Dongala
+Program Name: playMinesweeper.py
+Description:
+    Tkinter UI for a Minesweeper game.
 
-This file builds a  GUI with:
-- A toolbar (mines-remaining label, New…, Reset)
-- A clickable grid of Buttons (one per board cell)
-- Mouse interactions: left-click to uncover, right-click to flag
-- Win/Lose handling and full-board rerendering after each action
-
+    This file builds a GUI with:
+    - A toolbar (mines-remaining label, New…, Reset)
+    - A clickable grid of Buttons (one per board cell)
+    - Mouse interactions: left-click to uncover, right-click to flag
+    - Win/Lose handling and full-board rerendering after each action
+Input: None (all parameters hardcoded or via simple dialog)
+Output: A playable Minesweeper game window
 """
 
 import tkinter as tk
