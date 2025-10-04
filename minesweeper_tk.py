@@ -16,6 +16,7 @@ Output: A playable Minesweeper game window
 import tkinter as tk
 from tkinter import messagebox, simpledialog
 from functools import partial
+import random as random
 
 from Classes.minesweeper import BoardManager
 
@@ -56,7 +57,7 @@ class MinesweeperApp(tk.Tk):
     syncs the UI with the backend state via update_view().
     """
 
-    def __init__(self, rows=10, cols=10, mines=10):
+    def __init__(self, rows=10, cols=10, mines=10, ai_diff=None, ai_mode="vs", player_turn=True):
         super().__init__()
         self.title("Minesweeper")
         self.configure(bg=BG_COLOR)
@@ -131,6 +132,18 @@ class MinesweeperApp(tk.Tk):
         # Initial paint to reflect the fresh backend state
         self.update_view()
 
+        self.ai_diff = ai_diff
+        self.ai_mode = ai_mode
+        self.player_turn = player_turn
+
+        if self.ai_mode == "sim":
+            if self.ai_diff == "e":
+                self.easyai()
+            elif self.ai_diff == "m":
+                self.mediumai()
+            elif self.ai_diff == "h":
+                self.hardai()
+
     # UI helpers
     def _make_cell_button(self, r, c):
         """Create a single cell Button, place it in the grid, and bind events.
@@ -193,6 +206,17 @@ class MinesweeperApp(tk.Tk):
         self.title("Minesweeper")
         self._rebuild_grid()
 
+        #if in simulation mode, the user will be prompted whether they want to run the simulation again
+        if (self.ai_mode == "sim"):
+            choosemode = messagebox.askyesnocancel("Continue?", "Do you want to rerun the simulation?")
+            if choosemode == True:
+                if (self.ai_diff == "e"):
+                    self.easyai()
+                elif (self.ai_diff == "m"):
+                    self.mediumai()
+                elif (self.ai_diff == "h"):
+                    self.hardai()
+
     def _rebuild_grid(self):
         """Destroy all cell Buttons and recreate them cleanly.
 
@@ -213,6 +237,8 @@ class MinesweeperApp(tk.Tk):
 
     # Event handlers
     def on_left_click(self, r, c, event):
+        print("Left click handled")
+        print("handled by player:", self.player_turn)
         """Handle uncover action.
 
         - If flagged, ignore.
@@ -257,6 +283,36 @@ class MinesweeperApp(tk.Tk):
             messagebox.showinfo("🎉 You Win!", "You cleared all safe cells!")
             self._disable_all()
             self.reset_game()
+        
+        #If user is in vs mode, the game will pass control
+        #back to the player after a move
+        if (self.ai_mode == "vs"):
+
+            #Changes whos turn it is
+            if (self.player_turn == True):
+                self.player_turn = False
+
+                #If its the AI's turn, run the given ai
+                if (self.ai_diff == "e"):
+                    self.easyai()
+                elif (self.ai_diff == "m"):
+                    self.mediumai()
+                elif (self.ai_diff == "h"):
+                    self.hardai()
+
+            #Changes whos turn it is
+            elif (self.player_turn == False):
+                self.player_turn = True
+        
+        #If its in sim mode it will just run the ai at the end of a
+        #Selection anyways
+        if (self.ai_mode == "sim"):
+            if (self.ai_diff == "e"):
+                self.easyai()
+            elif (self.ai_diff == "m"):
+                self.mediumai()
+            elif (self.ai_diff == "h"):
+                self.hardai()
 
     def on_right_click(self, r, c, event):
         """Handle flag/unflag action, then repaint."""
@@ -264,6 +320,29 @@ class MinesweeperApp(tk.Tk):
         #     return
         self.game.flagCell(r, c)
         self.update_view()
+
+
+        #Same code is in on_left_click(), see comment there
+        if (self.ai_mode == "vs"):
+
+            if (self.player_turn == True):
+                self.player_turn = False
+                if (self.ai_diff == "e"):
+                    self.easyai()
+                elif (self.ai_diff == "m"):
+                    self.mediumai()
+                elif (self.ai_diff == "h"):
+                    self.hardai()
+            elif (self.player_turn == False):
+                self.player_turn == True
+        
+        if (self.ai_mode == "sim"):
+            if (self.ai_diff == "e"):
+                self.easyai()
+            elif (self.ai_diff == "m"):
+                self.mediumai()
+            elif (self.ai_diff == "h"):
+                self.hardai()
 
     # Rendering / Sync
     def update_view(self):
@@ -337,6 +416,36 @@ class MinesweeperApp(tk.Tk):
                     return False
         return True
 
+    #Easy difficulty ai
+    def easyai(self):
+        mines = self.game.mines
+        randomRow = random.randint(0, 9)
+        randomCol = random.randint(0, 9)
+        while self.game.boardState[randomRow][randomCol] != 0:
+            randomRow = random.randint(0, 9)
+            randomCol = random.randint(0, 9)
+            
+        randomFlag = random.randint(0, 99)
+        if (randomFlag > mines-1):
+            self.on_left_click(randomRow, randomCol, None)
+        else:
+            self.on_right_click(randomRow, randomCol, None)
+
+
+    #Medium difficulty ai
+    def mediumai(mode):
+        if (mode is True):
+            print("placeholder")
+        elif (mode is False):
+            print("placeholder")
+
+    #Hard difficulty ai
+    def hardai(mode):
+        if (mode is True):
+            print("placeholder")
+        elif (mode is False):
+            print("placeholder")
+
 
 if __name__ == "__main__":
 
@@ -396,9 +505,24 @@ if __name__ == "__main__":
                 activebackground=BTN_BG,
                 activeforeground=BTN_FG,
                 command=self.submit,
-            ).pack(pady=20)
+            ).pack(pady=(20, 10))
+
+            tk.Button(
+                frame,
+                text="AI MODE",
+                font=("Helvetica", 12, "bold"),
+                bg=BTN_BG,
+                fg=BTN_FG,
+                activebackground=BTN_BG,
+                activeforeground=BTN_FG,
+                command=self.addbuttons,
+            ).pack(pady=(20, 10))
 
             self.result = None  # will hold the validated int or remain None
+            self.ai_diff = None
+            self.ai_mode = None
+            self.player_turn = None
+
 
         def submit(self):
             """Validate integer in [10, 20]; store in self.result or show error."""
@@ -412,13 +536,95 @@ if __name__ == "__main__":
             except ValueError:
                 messagebox.showerror("Invalid", "Please enter a valid integer")
 
+        def aisubmit(self, difficulty):
+            #user is asked whether they would like to take turns with the ai or if they want to run a simulation
+            choosemode = messagebox.askyesnocancel("Control", "Do you want to play against the AI? (No results in a simulation)")
+
+            #User selects VS mode
+            if choosemode is True:
+                self.ai_mode = "vs"
+                self.player_turn = True
+                print("User vs AI mode chosen")
+
+            #User selects Sim mode
+            elif choosemode is False:
+                self.ai_mode = "sim"
+                self.player_turn = False
+                print("AI Simulation Mode Selected")
+
+            #Sets the difficulty to easy                
+            if (difficulty == "e"):
+                self.ai_diff = "e"
+
+            #Sets the difficulty to medium
+            elif (difficulty == "m"):
+                self.ai_diff = "m"
+
+            #Sets the difficulty to hard
+            elif (difficulty == "h"):
+                self.ai_diff = "h"
+            self.submit()
+            
+        #Creates the difficulty buttons when ai mode is selected
+        def addbuttons(self):
+            frame = tk.Frame(self, bg=BG_COLOR)
+            frame.place(relx=0.5, rely=1, anchor="s")
+
+            frame2 = tk.Frame(self, bg=BG_COLOR)
+            frame2.place(relx=0.3, rely=1, anchor="s")
+
+            frame3 = tk.Frame(self, bg=BG_COLOR)
+            frame3.place(relx=0.7, rely=1, anchor="s")
+            
+            tk.Button(
+                frame2,
+                text="EASY",
+                font=("Helvetica", 12, "bold"),
+                bg=BTN_BG,
+                fg=BTN_FG,
+                activebackground=BTN_BG,
+                activeforeground=BTN_FG,
+                command=lambda: self.aisubmit("e"),
+            ).pack(pady=20)
+
+            tk.Button(
+                frame,
+                text="MEDIUM",
+                font=("Helvetica", 12, "bold"),
+                bg=BTN_BG,
+                fg=BTN_FG,
+                activebackground=BTN_BG,
+                activeforeground=BTN_FG,
+                command=lambda: self.aisubmit("m"),
+            ).pack(pady=20)
+
+            tk.Button(
+                frame3,
+                text="HARD",
+                font=("Helvetica", 12, "bold"),
+                bg=BTN_BG,
+                fg=BTN_FG,
+                activebackground=BTN_BG,
+                activeforeground=BTN_FG,
+                command=lambda: self.aisubmit("h"),
+            ).pack(pady=20)
+
+
+
+
+
+            
+
     # Launch the dialog to collect a mine count
     dialog = MineCountDialog()
     dialog.mainloop()
 
     # Use dialog result if provided; default to 10 if user closes/cancels
     mines = dialog.result if dialog.result else 10
+    ai_diff = dialog.ai_diff
+    ai_mode = dialog.ai_mode
+    player_turn = dialog.player_turn
 
     # Create and run the main game window
-    app = MinesweeperApp(rows=10, cols=10, mines=mines)
+    app = MinesweeperApp(rows=10, cols=10, mines=mines, ai_diff=ai_diff, ai_mode=ai_mode, player_turn=player_turn)
     app.mainloop()
