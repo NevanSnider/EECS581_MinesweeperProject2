@@ -433,18 +433,91 @@ class MinesweeperApp(tk.Tk):
 
 
     #Medium difficulty ai
-    def mediumai(mode):
-        if (mode is True):
-            print("placeholder")
-        elif (mode is False):
-            print("placeholder")
+    def mediumai(self):
+
+        mines = self.game.mines
+
+        actionTaken = False
+
+        #define neighbours to check
+        neighbors = [
+            (-1, -1), (-1, 0), (-1, 1),
+            (0, -1),           (0, 1),
+            (1, -1),  (1, 0),  (1, 1)
+        ]
+
+        #iterate through all squares checking for moves
+        for i in range(self.game.rows):
+            for j in range(self.game.cols):
+                if (self.game.boardState[i][j] == 2): #check if its uncovered
+
+                    number = self.game.boardContent[i][j]
+                    covered = []
+                    flagged = int(0)
+                    
+                    #check the neighbours
+                    for neighbourRow, neighbourCol in neighbors:
+                        newNeighbourRow, newNeighbourCol = i + neighbourRow, j + neighbourCol
+                        #make sure the tile is in bounds
+                        if ((0 <= newNeighbourRow < self.game.rows )and (0 <= newNeighbourCol < self.game.cols)):
+                            state = self.game.boardState[newNeighbourRow][newNeighbourCol]
+                            #mark what the state it
+                            if (state == int(0)):
+                                covered.append((newNeighbourRow, newNeighbourCol))
+                            elif (state == int(1)):
+                                flagged += int(1)
+
+                    #if the number of oncovered tiles and flags add up to the correct amount then flag the surrounding tiles
+                    if number == flagged + len(covered):
+                        for (newNeighbourRow, newNeighbourCol) in covered:
+                            print("Right clicking at ", newNeighbourCol +1, " , " , newNeighbourRow +1 )
+                            self.on_right_click(newNeighbourRow, newNeighbourCol, None)
+                            actionTaken = True
+                            break
+
+                    # if all the flags are replaced then reveal
+                    elif number == flagged:
+                        for (newNeighbourRow, newNeighbourCol) in covered:
+                            print("Left clicking at ", newNeighbourCol +1, " , " , newNeighbourRow +1 )
+                            self.on_left_click(newNeighbourRow, newNeighbourCol, None)
+                            actionTaken = True
+                            break
+
+                if actionTaken:
+                    break
+            if actionTaken:
+                break
+
+        #revert to easy if it can't find any good moves
+        if(actionTaken == False):
+            self.easyai()
+
 
     #Hard difficulty ai
-    def hardai(mode):
-        if (mode is True):
-            print("placeholder")
-        elif (mode is False):
-            print("placeholder")
+    def hardai(self):
+
+        mines = self.game.mines
+
+        #iterate through all squares checking for moves
+        actionTaken = False
+        for i in range(self.game.rows):
+            for j in range(self.game.cols):
+                if (self.game.boardState[i][j] == 0): #check if its uncovered
+                    if(self.game.isMine(i, j)):
+                        print("Right clicking at ", j +1, " , " , i +1 )
+                        self.on_right_click(i, j, None)                        
+                    else:
+                        print("Left clicking at ", j +1, " , " , i +1 )
+                        self.on_left_click(i, j, None)      
+
+                    actionTaken = True
+
+                if actionTaken:
+                    break                                                                                       
+            if actionTaken:
+                break
+
+
 
 
 if __name__ == "__main__":
