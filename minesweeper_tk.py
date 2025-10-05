@@ -57,7 +57,7 @@ class MinesweeperApp(tk.Tk):
     syncs the UI with the backend state via update_view().
     """
 
-    def __init__(self, rows=10, cols=10, mines=10, ai_diff=None, ai_mode="vs", player_turn=True):
+    def __init__(self, rows=10, cols=10, mines=10, ai_diff=None, ai_mode="vs", player_turn=True, running_sim=False):
         super().__init__()
         self.title("Minesweeper")
         self.configure(bg=BG_COLOR)
@@ -135,8 +135,9 @@ class MinesweeperApp(tk.Tk):
         self.ai_diff = ai_diff
         self.ai_mode = ai_mode
         self.player_turn = player_turn
+        self.running_sim = running_sim
 
-        if self.ai_mode == "sim":
+        if self.ai_mode == "sim" and self.running_sim == True:
             if self.ai_diff == "e":
                 self.easyai()
             elif self.ai_diff == "m":
@@ -210,12 +211,15 @@ class MinesweeperApp(tk.Tk):
         if (self.ai_mode == "sim"):
             choosemode = messagebox.askyesnocancel("Continue?", "Do you want to rerun the simulation?")
             if choosemode == True:
+                self.running_sim = True
                 if (self.ai_diff == "e"):
                     self.easyai()
                 elif (self.ai_diff == "m"):
                     self.mediumai()
                 elif (self.ai_diff == "h"):
                     self.hardai()
+            else:
+                self.running_sim = False
 
     def _rebuild_grid(self):
         """Destroy all cell Buttons and recreate them cleanly.
@@ -237,8 +241,6 @@ class MinesweeperApp(tk.Tk):
 
     # Event handlers
     def on_left_click(self, r, c, event):
-        print("Left click handled")
-        print("handled by player:", self.player_turn)
         """Handle uncover action.
 
         - If flagged, ignore.
@@ -334,7 +336,7 @@ class MinesweeperApp(tk.Tk):
                 elif (self.ai_diff == "h"):
                     self.hardai()
             elif (self.player_turn == False):
-                self.player_turn == True
+                self.player_turn = True
         
         if (self.ai_mode == "sim"):
             if (self.ai_diff == "e"):
@@ -418,6 +420,10 @@ class MinesweeperApp(tk.Tk):
 
     #Easy difficulty ai
     def easyai(self):
+
+        if self.running_sim == False:
+            return
+        
         mines = self.game.mines
         randomRow = random.randint(0, 9)
         randomCol = random.randint(0, 9)
@@ -427,14 +433,19 @@ class MinesweeperApp(tk.Tk):
             
         randomFlag = random.randint(0, 99)
         if (randomFlag > mines-1):
+            print("Left clicking at ", randomRow+1, ",", randomCol+1)
             self.on_left_click(randomRow, randomCol, None)
         else:
+            print("Right clicking at ", randomRow+1, ",", randomCol+1)
             self.on_right_click(randomRow, randomCol, None)
 
 
     #Medium difficulty ai
     def mediumai(self):
 
+        if self.running_sim == False:
+            return
+        
         mines = self.game.mines
 
         actionTaken = False
@@ -495,6 +506,9 @@ class MinesweeperApp(tk.Tk):
 
     #Hard difficulty ai
     def hardai(self):
+
+        if self.running_sim == False:
+            return
 
         mines = self.game.mines
 
@@ -623,6 +637,7 @@ if __name__ == "__main__":
             elif choosemode is False:
                 self.ai_mode = "sim"
                 self.player_turn = False
+                self.running_sim = True
                 print("AI Simulation Mode Selected")
 
             #Sets the difficulty to easy                
@@ -697,7 +712,8 @@ if __name__ == "__main__":
     ai_diff = dialog.ai_diff
     ai_mode = dialog.ai_mode
     player_turn = dialog.player_turn
+    running_sim = dialog.running_sim
 
     # Create and run the main game window
-    app = MinesweeperApp(rows=10, cols=10, mines=mines, ai_diff=ai_diff, ai_mode=ai_mode, player_turn=player_turn)
+    app = MinesweeperApp(rows=10, cols=10, mines=mines, ai_diff=ai_diff, ai_mode=ai_mode, player_turn=player_turn, running_sim=running_sim)
     app.mainloop()
