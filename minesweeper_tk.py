@@ -64,10 +64,23 @@ class MinesweeperApp(tk.Tk):
 
         # Create the game using BoardManager (backend model)
         self.game = BoardManager(rows, cols, mines)
+        
+        # Track if this is the first click
+        self.first_click = True
 
         #Toolbar (top)
         self.toolbar = tk.Frame(self, padx=8, pady=6, bg=BG_COLOR)
         self.toolbar.pack(side=tk.TOP, fill=tk.X)
+
+        # State label - always shows PLAYING in the game board
+        self.state_label = tk.Label(
+            self.toolbar,
+            text="State: PLAYING",
+            font=("Helvetica", 12, "bold"),
+            fg=FG_COLOR,
+            bg=BG_COLOR,
+        )
+        self.state_label.pack(side=tk.LEFT)
 
         # Mines remaining label (derived as total mines - current flag count)
         self.mine_label = tk.Label(
@@ -77,7 +90,7 @@ class MinesweeperApp(tk.Tk):
             fg=FG_COLOR,
             bg=BG_COLOR,
         )
-        self.mine_label.pack(side=tk.LEFT)
+        self.mine_label.pack(side=tk.LEFT, padx=(20, 0))
 
         # Reset button: restart with same rows/cols/mines
         self.reset_btn = tk.Button(
@@ -197,6 +210,7 @@ class MinesweeperApp(tk.Tk):
             if mines is None:
                 return  # user cancelled
             self.game = BoardManager(10, 10, mines)
+            self.first_click = True
             self._rebuild_grid()
         except Exception as e:
             messagebox.showerror("Error", str(e))
@@ -204,6 +218,7 @@ class MinesweeperApp(tk.Tk):
     def reset_game(self):
         """Reset the game with the SAME rows/cols/mines as current state."""
         self.game = BoardManager(self.game.rows, self.game.cols, self.game.mines)
+        self.first_click = True
         self.title("Minesweeper")
         self._rebuild_grid()
 
@@ -239,6 +254,20 @@ class MinesweeperApp(tk.Tk):
         ]
         self.update_view()
 
+    def ensure_first_click_safe(self, fr, fc):
+        """Regenerate the board until the first click is on a blank tile (0 mines nearby)."""
+        # Force mine placement first (mines are normally placed in uncoverCell)
+        self.game.placeMines(fr, fc)
+        
+        # while the clicked cell contains a mine or is not bordering zero mines
+        while not ((not self.game.isMine(fr, fc)) and (self.game.boardContent[fr][fc] == 0)):
+            print("Regenerating board for safe first click")
+            
+            # Create a new board with the same dimensions and mine count
+            self.game = BoardManager(self.game.rows, self.game.cols, self.game.mines)
+            # Place mines again with the new board
+            self.game.placeMines(fr, fc)
+
     # Event handlers
     def on_left_click(self, r, c, event):
         """Handle uncover action.
@@ -252,6 +281,12 @@ class MinesweeperApp(tk.Tk):
         Button-1 = left mouse click
         Button-3 = right mouse click (on Mac, usually two-finger tap)
         """
+        # Ensure first click is safe
+        if self.first_click:
+            self.ensure_first_click_safe(r, c)
+            self.first_click = False
+            self.update_view()
+
         self.title("Playing")
 
         # Ignore uncover attempts on flagged cells
@@ -552,6 +587,16 @@ if __name__ == "__main__":
             frame = tk.Frame(self, bg=BG_COLOR)
             frame.place(relx=0.5, rely=0.5, anchor="center")
 
+            # State label in top left corner
+            state_label = tk.Label(
+                self,
+                text="State: MENU",
+                font=("Helvetica", 12, "bold"),
+                fg=FG_COLOR,
+                bg=BG_COLOR,
+            )
+            state_label.place(x=10, y=10, anchor="nw")
+
             # Title label
             tk.Label(
                 frame,
@@ -609,6 +654,7 @@ if __name__ == "__main__":
             self.ai_diff = None
             self.ai_mode = None
             self.player_turn = None
+            self.running_sim = None
 
 
         def submit(self):
