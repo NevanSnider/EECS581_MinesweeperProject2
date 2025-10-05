@@ -485,6 +485,7 @@ class MinesweeperApp(tk.Tk):
 
         actionTaken = False
 
+
         #define neighbours to check
         neighbors = [
             (-1, -1), (-1, 0), (-1, 1),
@@ -533,6 +534,28 @@ class MinesweeperApp(tk.Tk):
                     break
             if actionTaken:
                 break
+
+        #check that it didn't accidently cover too many mines to prevent the game from freezing
+        #find number of flags places
+        flags = sum(
+            1 for r in range(self.game.rows) for c in range(self.game.cols)
+            if self.game.boardState[r][c] == 1
+        )
+        remaining = self.game.mines - flags       
+        #if too many flags have been placed 
+        if(remaining < 0):
+            #cycle through all flags
+            for i in range(self.game.rows):
+                for j in range(self.game.cols):
+                    if (self.game.boardState[i][j] == 1): #check if a tile is flagged
+                        print("Right clicking at ", j +1, " , " , i +1 )
+                        self.on_right_click(i, j, None)  
+                        actionTaken = True     
+                    if actionTaken:
+                        break
+                if actionTaken:
+                    break                       
+
 
         #revert to easy if it can't find any good moves
         if(actionTaken == False):
