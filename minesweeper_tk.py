@@ -37,6 +37,10 @@ UNCOVERED_BG   = "#f2d2d7"   # pale pink for uncovered cells
 MINE_BG        = "#ffebee"   # light red/pink when a mine is revealed
 DISABLED_FG    = "#3b2e2e"   # dark text on uncovered cells
 
+# Time Attack constants
+TIME_ATTACK_START = 60 # starting seconds
+TIME_ATTACK_BONUS = 10 # seconds added per valid reveal
+
 # Mapping of number -> text color for uncovered numeric cells
 NUMBER_COLORS = {
     0: "#e0a5b0",
@@ -57,10 +61,17 @@ class MinesweeperApp(tk.Tk):
     syncs the UI with the backend state via update_view().
     """
 
-    def __init__(self, rows=10, cols=10, mines=10, ai_diff=None, ai_mode="vs", player_turn=True, running_sim=False):
+    def __init__(self, rows=10, cols=10, mines=10, ai_diff=None, ai_mode="vs", player_turn=True, running_sim=False, mode="classic", initial_time=TIME_ATTACK_START, bonus_time=TIME_ATTACK_BONUS):
         super().__init__()
         self.title("Minesweeper")
         self.configure(bg=BG_COLOR)
+
+        # Initial time-attack mode fields
+        self.mode = mode
+        self.initial_time = initial_time
+        self.bonus_time = bonus_time
+        self.time_remaining = initial_time
+        self._timer_job = None
 
         # Create the game using BoardManager (backend model)
         self.game = BoardManager(rows, cols, mines)
@@ -91,6 +102,10 @@ class MinesweeperApp(tk.Tk):
             bg=BG_COLOR,
         )
         self.mine_label.pack(side=tk.LEFT, padx=(20, 0))
+
+        # Time remaining label
+        self.timer_label = tk.Label(self.toolbar,text=self._timer_text(),font=("Helvetica", 12, "bold"),fg=FG_COLOR,bg=BG_COLOR)
+        self.timer_label.pack(side=tk.LEFT,padx=(20, 0))
 
         # Reset button: restart with same rows/cols/mines
         self.reset_btn = tk.Button(
@@ -209,18 +224,24 @@ class MinesweeperApp(tk.Tk):
             )
             if mines is None:
                 return  # user cancelled
+            self._stop_timer()
+            self.time_remaining = self.initial_time
             self.game = BoardManager(10, 10, mines)
             self.first_click = True
             self._rebuild_grid()
+            self.timer_label.config(text=self._timer_text())
         except Exception as e:
             messagebox.showerror("Error", str(e))
 
     def reset_game(self):
         """Reset the game with the SAME rows/cols/mines as current state."""
+        self._stop_timer()
+        self.time_remaining = self.initial_time
         self.game = BoardManager(self.game.rows, self.game.cols, self.game.mines)
         self.first_click = True
         self.title("Minesweeper")
         self._rebuild_grid()
+        self.timer_label.config(text=self._timer_text())
 
         #if in simulation mode, the user will be prompted whether they want to run the simulation again
         if (self.ai_mode == "sim"):
@@ -268,6 +289,60 @@ class MinesweeperApp(tk.Tk):
             # Place mines again with the new board
             self.game.placeMines(fr, fc)
 
+    # Return current timer value as label text
+    def _timer_text(self):
+        """
+        Build the timer label string for Time-Attack mode.
+        Returns an empty string in classic mode so the label appears blank.
+        """
+        mode = getattr(self, "mode", "classic")
+        if mode != "time":
+            return ""
+        remaining = int(getattr(self, "time_remaining", 0))
+        secs = max(0, remaining)
+        return f"Time: {secs}s"
+
+    # Starts countdown for Time-Attack mode
+    def _start_timer(self):
+        if self.mode != "time":
+            return
+        if self._timer_job is None: # Ensure there's not already a timer going
+            self._tick()
+
+    # Define each decrement of the countdown for Time-Attack mode, it's label, and schedule
+    def _tick(self):
+        if self.mode != "time":
+            return
+        self.time_remaining -= 1
+        self.timer_label.config(text=self._timer_text())
+        if self.time_remaining <= 0: # Ensure there's still time remaining
+            self._time_up() # Handles case of running out of time
+        else:
+            self._timer_job = self.after(1000, self._tick) # schedule next decrement of the timer
+
+    # Handle adding time bonus
+    def _add_time(self, seconds):
+        if self.mode != "time":
+            return
+        self.time_remaining += seconds
+        self.timer_label.config(text=self._timer_text())
+
+    # Handle ending the timer
+    def _stop_timer(self):
+        if self._timer_job is not None:
+            self.after_cancel(self._timer_job)
+            self._timer_job = None
+
+    # Handle case of timer expiring
+    def _time_up(self):
+        self._stop_timer()
+        self._reveal_all_mines()
+        self.update_view()
+        self.title("Time's Up")
+        messagebox.showinfo("Time's Up", "You ran out of time.")
+        self._disable_all()
+        self.reset_game()
+
     # Event handlers
     def on_left_click(self, r, c, event):
         """Handle uncover action.
@@ -285,6 +360,8 @@ class MinesweeperApp(tk.Tk):
         if self.first_click:
             self.ensure_first_click_safe(r, c)
             self.first_click = False
+            if event is not None and self.mode == "time":
+                self._start_timer()
             self.update_view()
 
         self.title("Playing")
@@ -293,8 +370,15 @@ class MinesweeperApp(tk.Tk):
         if self.game.boardState[r][c] == 1:
             return
 
+        # Save previous state
+        prev_state = self.game.boardState[r][c]
+
         # Ask backend to uncover
         self.game.uncoverCell(r, c)
+
+        # Add time-attack bonus on uncover
+        if (event is not None and self.mode == "time" and prev_state == 0 and self.game.boardState[r][c] == 2 and not self.game.isMine(r,c)):
+            self._add_time(self.bonus_time)
 
         # If it’s a mine and not flagged, game over
         if not self.game.isFlagged(r, c) and self.game.isMine(r, c):
@@ -317,10 +401,18 @@ class MinesweeperApp(tk.Tk):
         self.update_view()
         if self._check_win():
             self.title("You Win!")
-            messagebox.showinfo("🎉 You Win!", "You cleared all safe cells!")
+            self._stop_timer()
+            if self.mode == "time":
+                messagebox.showinfo("🎉 You Win!", f"You cleared all safe cells!\nTime Remaining: {int(self.time_remaining)}s")
+            else:
+                messagebox.showinfo("🎉 You Win!", "You cleared all safe cells!")
             self._disable_all()
             self.reset_game()
-        
+            return
+        self.mine_label.config(text=self._mine_label_text(), fg=FG_COLOR, bg=BG_COLOR)
+        self.timer_label.config(text=self._timer_text())
+        self.update_idletasks()
+
         #If user is in vs mode, the game will pass control
         #back to the player after a move
         if (self.ai_mode == "vs"):
@@ -485,7 +577,6 @@ class MinesweeperApp(tk.Tk):
 
         actionTaken = False
 
-
         #define neighbours to check
         neighbors = [
             (-1, -1), (-1, 0), (-1, 1),
@@ -534,28 +625,6 @@ class MinesweeperApp(tk.Tk):
                     break
             if actionTaken:
                 break
-
-        #check that it didn't accidently cover too many mines to prevent the game from freezing
-        #find number of flags places
-        flags = sum(
-            1 for r in range(self.game.rows) for c in range(self.game.cols)
-            if self.game.boardState[r][c] == 1
-        )
-        remaining = self.game.mines - flags       
-        #if too many flags have been placed 
-        if(remaining < 0):
-            #cycle through all flags
-            for i in range(self.game.rows):
-                for j in range(self.game.cols):
-                    if (self.game.boardState[i][j] == 1): #check if a tile is flagged
-                        print("Right clicking at ", j +1, " , " , i +1 )
-                        self.on_right_click(i, j, None)  
-                        actionTaken = True     
-                    if actionTaken:
-                        break
-                if actionTaken:
-                    break                       
-
 
         #revert to easy if it can't find any good moves
         if(actionTaken == False):
@@ -679,6 +748,10 @@ if __name__ == "__main__":
             self.player_turn = None
             self.running_sim = None
 
+            # Toggle for Time-Attack mode
+            self.time_attack_var = tk.BooleanVar(value=False)
+            tk.Checkbutton(frame,text="Time Attack(60s, +10s per uncover)",variable=self.time_attack_var,font=("Helvetica", 11),bg=BG_COLOR,fg=FG_COLOR,selectcolor=BG_COLOR,activebackground=BG_COLOR,activeforeground=FG_COLOR).pack(pady=(6, 0))
+            self.time_attack = False
 
         def submit(self):
             """Validate integer in [10, 20]; store in self.result or show error."""
@@ -686,6 +759,7 @@ if __name__ == "__main__":
                 val = int(self.entry.get())
                 if 10 <= val <= 20:
                     self.result = val
+                    self.time_attack = bool(self.time_attack_var.get()) # Check for time attack mode
                     self.destroy()
                 else:
                     messagebox.showerror("Invalid", "Enter a number 10-20")
@@ -782,7 +856,8 @@ if __name__ == "__main__":
     ai_mode = dialog.ai_mode
     player_turn = dialog.player_turn
     running_sim = dialog.running_sim
+    mode = "time" if dialog.time_attack else "classic"
 
     # Create and run the main game window
-    app = MinesweeperApp(rows=10, cols=10, mines=mines, ai_diff=ai_diff, ai_mode=ai_mode, player_turn=player_turn, running_sim=running_sim)
+    app = MinesweeperApp(rows=10, cols=10, mines=mines, ai_diff=ai_diff, ai_mode=ai_mode, player_turn=player_turn, running_sim=running_sim, mode=mode, initial_time=TIME_ATTACK_START,bonus_time=TIME_ATTACK_BONUS)
     app.mainloop()
