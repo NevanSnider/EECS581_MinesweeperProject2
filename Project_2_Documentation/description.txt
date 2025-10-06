@@ -1,0 +1,1 @@
+This folder will contain all of the documentation for project 2.
